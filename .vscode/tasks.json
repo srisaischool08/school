@@ -1,0 +1,996 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "sync prisma schema",
+			"type": "shell",
+			"command": "npm run prisma:push",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "force prisma schema sync",
+			"type": "shell",
+			"command": "npx prisma db push --schema=server/prisma/schema.prisma --accept-data-loss",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "push updated schema",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"prisma",
+				"db",
+				"push",
+				"--schema=server/prisma/schema.prisma",
+				"--accept-data-loss"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "normalize student rolls",
+			"type": "shell",
+			"command": "npm run normalize:rolls",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "push updated schema",
+			"type": "shell",
+			"command": "npx prisma db push --schema=server/prisma/schema.prisma --accept-data-loss",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "generate demo roster",
+			"type": "shell",
+			"command": "npm run demo:csv",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build frontend",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "clear demo batch",
+			"type": "shell",
+			"command": "npm run demo:clear",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "seed corrected demo batch",
+			"type": "shell",
+			"command": "npm run demo:seed",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "seed corrected demo batch",
+			"type": "shell",
+			"command": "npm run demo:seed",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "seed corrected demo batch",
+			"type": "shell",
+			"command": "npm run demo:seed",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "final frontend build",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build staff changes",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "push staff schema",
+			"type": "shell",
+			"command": "npx prisma db push --schema=server/prisma/schema.prisma --accept-data-loss",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "seed school teachers",
+			"type": "shell",
+			"command": "npm run teachers:seed",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "seed school teachers",
+			"type": "shell",
+			"command": "npm run teachers:seed",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "refresh teacher assignments",
+			"type": "shell",
+			"command": "npm run teachers:seed",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "refresh staff credentials",
+			"type": "shell",
+			"command": "npm run teachers:seed",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build teacher portal",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build attendance workflow",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "rebuild attendance workflow",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "clear dummy people",
+			"type": "shell",
+			"command": "node server/prisma/clear-person-records.tmp.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "clear dummy people",
+			"type": "shell",
+			"command": "node server/prisma/clear-person-records.tmp.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build data-ready app",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify empty people tables",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"--input-type=module",
+				"-e",
+				"import { PrismaClient } from '@prisma/client'; const p=new PrismaClient(); console.log(await Promise.all([p.user.count(),p.student.count(),p.teacher.count(),p.admin.count()])); await p.$disconnect();"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify empty people tables",
+			"type": "shell",
+			"command": "node server/prisma/verify-empty.tmp.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify cleared database records",
+			"type": "shell",
+			"command": "node server/prisma/verify-empty.tmp.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build empty-data app",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check admin route syntax final",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build final data-ready app",
+			"type": "shell",
+			"command": "npm run build",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check admin syntax after roles",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "generate development CSVs",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"--input-type=module",
+				"-e",
+				"import { writeFile } from 'node:fs/promises'; const classes=['Nursery','LKG','UKG',...Array.from({length:10},(_,i)=>`Class ${i+1}`)]; const subjects=['English','Mathematics','Science','Social Studies','Hindi','Telugu','Computer Science','Physical Education']; const teacherLines=['Teacher ID,Teacher Name,Username,Initial Password,Assigned Subject,Assigned Class,Assigned Section,Is Class Teacher,Active']; for(let i=0;i<25;i++){const c=classes[i%classes.length]; teacherLines.push(`DUMMY-TCH-${String(i+1).padStart(3,'0')},Development Teacher ${String(i+1).padStart(2,'0')},dummyteacher${String(i+1).padStart(2,'0')},DummyTeach#${String(i+1).padStart(2,'0')},${subjects[i%subjects.length]},${c},A,${i<13},true`)} const studentLines=['Student ID,Student Name,Username,Initial Password,Class,Section,Roll Number,Room Number,Academic Year,Gender,Parent Name,Parent Contact,Email,Address']; let n=0; for(const c of classes){const m=/Class (\\\\d+)/.exec(c); const prefix=m?m[1].padStart(2,'0'):String(classes.indexOf(c)+1).padStart(2,'0'); for(let r=1;r<=30;r++){n++; const roll=prefix+String(r).padStart(2,'0'); studentLines.push(`DUMMY-STU-${String(n).padStart(4,'0')},Development Student ${String(n).padStart(3,'0')},dummystudent${String(n).padStart(4,'0')},DummyStud#${String(n).padStart(4,'0')},${c},A,${roll},ROOM-${prefix},2026-2027,Unspecified,,,dummystudent${String(n).padStart(4,'0')}@development.invalid,Development record`)}} await writeFile('dummy_teachers.csv',teacherLines.join('\\n')+'\\n'); await writeFile('dummy_students.csv',studentLines.join('\\n')+'\\n'); console.log('Generated replaceable development CSVs:',teacherLines.length-1,'teachers and',studentLines.length-1,'students');"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "generate student CSV",
+			"type": "shell",
+			"command": "node generate-development-csv.tmp.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "import development CSV data",
+			"type": "shell",
+			"command": "npm run import:development -- dummy_teachers.csv dummy_students.csv",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "import development CSV data",
+			"type": "shell",
+			"command": "npm run import:development -- dummy_teachers.csv dummy_students.csv",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify imported counts",
+			"type": "shell",
+			"command": "node -e \"const {PrismaClient}=require('@prisma/client'); const p=new PrismaClient(); Promise.all([p.user.count(),p.teacher.count(),p.student.count(),p.importBatch.count(),p.schoolClass.count()]).then(x=>console.log(JSON.stringify({users:x[0],teachers:x[1],students:x[2],batches:x[3],classes:x[4]}))).finally(()=>p.$disconnect())\"",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check development scripts",
+			"type": "shell",
+			"command": "node --check server/prisma/import-development-csv.js; node --check server/prisma/clear-development-csv.js",
+			"args": [],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify development counts now",
+			"type": "shell",
+			"command": "node verify-development-import.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "test imported logins",
+			"type": "shell",
+			"command": "$teacher = curl.exe -s -X POST http://localhost:5000/api/auth/login -H \"Content-Type: application/json\" -d '{\"username\":\"dummyteacher01\",\"password\":\"DummyTeach#01\",\"role\":\"TEACHER\"}'; $student = curl.exe -s -X POST http://localhost:5000/api/auth/login -H \"Content-Type: application/json\" -d '{\"username\":\"dummystudent0001\",\"password\":\"DummyStud#0001\",\"role\":\"STUDENT\"}'; Write-Output $teacher; Write-Output $student",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify imported login accounts",
+			"type": "shell",
+			"command": "$teacher = curl.exe -s -X POST http://localhost:5000/api/auth/login -H \"Content-Type: application/json\" --data-binary \"@login-teacher.tmp.json\"; $student = curl.exe -s -X POST http://localhost:5000/api/auth/login -H \"Content-Type: application/json\" --data-binary \"@login-student.tmp.json\"; Write-Output $teacher; Write-Output $student",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify password hashes",
+			"type": "shell",
+			"command": "node -e \"const {PrismaClient}=require('@prisma/client'); const b=require('bcryptjs'); const p=new PrismaClient(); Promise.all([p.user.findUnique({where:{username:'dummyteacher01'}}),p.user.findUnique({where:{username:'dummystudent0001'}})]).then(async ([t,s])=>console.log(JSON.stringify({teacher:await b.compare('DummyTeach#01',t.passwordHash),student:await b.compare('DummyStud#0001',s.passwordHash)})).finally(()=>p.disconnect())\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "final production build",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "final importer syntax",
+			"type": "shell",
+			"command": "node --check server/prisma/import-development-csv.js; node --check server/prisma/clear-development-csv.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "update demo student data",
+			"type": "shell",
+			"command": "node update-development-students.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "assign demo student names",
+			"type": "shell",
+			"command": "node name-development-students.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build updated portal",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check updated routes",
+			"type": "shell",
+			"command": "node --check server/src/routes/studentRoutes.js; node --check server/prisma/import-development-csv.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "prepare student CSV subjects",
+			"type": "shell",
+			"command": "node update-development-students.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "apply student subjects schema",
+			"type": "shell",
+			"command": "npx prisma db push --schema server/prisma/schema.prisma",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "regenerate prisma client",
+			"type": "shell",
+			"command": "npx prisma generate --schema server/prisma/schema.prisma",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "find node processes",
+			"type": "shell",
+			"command": "Get-Process node -ErrorAction SilentlyContinue | Select-Object Id,Path,StartTime",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "identify portal server process",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process -Filter \"Name = 'node.exe'\" | Select-Object ProcessId,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "identify node commands",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' } | Select-Object ProcessId,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "stop portal server processes",
+			"type": "shell",
+			"command": "Stop-Process -Id 22776,24216,25592,15096 -Force",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "regenerate updated prisma client",
+			"type": "shell",
+			"command": "npx prisma generate --schema server/prisma/schema.prisma",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "clear old development batch",
+			"type": "shell",
+			"command": "npm run clear:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "import updated development batch",
+			"type": "shell",
+			"command": "npm run import:development -- dummy_teachers.csv dummy_students.csv",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "fix class ten roll numbers",
+			"type": "shell",
+			"command": "node fix-development-rolls.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "import corrected student batch",
+			"type": "shell",
+			"command": "npm run import:development -- dummy_teachers.csv dummy_students.csv",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "correct final class ten rolls",
+			"type": "shell",
+			"command": "node fix-development-rolls.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "import final development batch",
+			"type": "shell",
+			"command": "npm run import:development -- dummy_teachers.csv dummy_students.csv",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify final development batch",
+			"type": "shell",
+			"command": "node verify-development.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect import process",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' } | Select-Object ProcessId,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "find missing development student",
+			"type": "shell",
+			"command": "node verify-development.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "syntax check student changes",
+			"type": "shell",
+			"command": "node --check server/src/routes/studentRoutes.js; node --check server/prisma/import-development-csv.js; node --check server/prisma/clear-development-csv.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build final student portal",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "start school portal",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "check portal health",
+			"type": "shell",
+			"command": "curl.exe -s http://localhost:5000/api/health",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build attendance display update",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "create super admin account",
+			"type": "shell",
+			"command": "node server/prisma/ensure-development-admin.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build admin login update",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify admin login now",
+			"type": "shell",
+			"command": "curl.exe -s -X POST http://localhost:5000/api/auth/login -H \"Content-Type: application/json\" --data-binary \"@login-admin.tmp.json\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify super admin credentials",
+			"type": "shell",
+			"command": "node verify-admin-login.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "restart school api",
+			"type": "shell",
+			"command": "npm run server",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify admin login after restart",
+			"type": "shell",
+			"command": "node verify-admin-login.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "final admin portal build",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check portal record counts",
+			"type": "shell",
+			"command": "node -e \"import('@prisma/client').then(async ({PrismaClient})=>{const p=new PrismaClient(); console.log(await p.student.count(),await p.teacher.count(),await p.importBatch.findMany({select:{batchKey:true,isDemo:true}})); await p.$disconnect()})\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "rebuild development seed batch",
+			"type": "shell",
+			"command": "npm run clear:development; npm run import:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify seeded portal records",
+			"type": "shell",
+			"command": "node -e \"const {PrismaClient}=require('@prisma/client'); const p=new PrismaClient(); Promise.all([p.student.count(),p.teacher.count(),p.importBatch.findMany({select:{batchKey:true,isDemo:true}})]).then(x=>console.log(JSON.stringify({students:x[0],teachers:x[1],batches:x[2]}))).finally(()=>p.$disconnect())\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify seeded data counts",
+			"type": "shell",
+			"command": "node verify-seed.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "stop portal node processes",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and $_.CommandLine -match 'server/index|npm-cli.*server|concurrently' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "cleanly rebuild development data",
+			"type": "shell",
+			"command": "npm run clear:development; npm run import:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify clean seed counts",
+			"type": "shell",
+			"command": "node verify-seed.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect active seed process",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' } | Select-Object ProcessId,CommandLine",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "wait and verify seed completion",
+			"type": "shell",
+			"command": "Start-Sleep -Seconds 75; node verify-seed.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "start seeded portal server",
+			"type": "shell",
+			"command": "npm run server",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "final seeded portal build",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "final seed syntax checks",
+			"type": "shell",
+			"command": "node --check server/index.js; node --check server/prisma/ensure-development-data.js; node --check server/prisma/import-development-csv.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect super admin account",
+			"type": "shell",
+			"command": "node -e \"const {PrismaClient}=require('@prisma/client'); const p=new PrismaClient(); p.user.findUnique({where:{username:'superadmin'},include:{role:true,admin:true}}).then(async u=>{console.log(JSON.stringify(u)); await p.$disconnect()})\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect live admin account",
+			"type": "shell",
+			"command": "node inspect-admin.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "test live admin login",
+			"type": "shell",
+			"command": "node -e \"fetch('http://localhost:5000/api/auth/login',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({username:'superadmin',password:'SuperAdmin#2026',role:'SUPER_ADMIN'})}).then(async r=>console.log(r.status,await r.text()))\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify admin API login",
+			"type": "shell",
+			"command": "node test-admin-login.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "start school website",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify API port",
+			"type": "shell",
+			"command": "curl.exe -s http://localhost:5000/api/health",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "stop portal before reseed",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and $_.CommandLine -match 'server/index|npm-cli.*server|concurrently' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force }",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "reseed tagged development data",
+			"type": "shell",
+			"command": "npm run clear:development; npm run import:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "wait for development import",
+			"type": "shell",
+			"command": "Start-Sleep -Seconds 90",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify admin data source",
+			"type": "shell",
+			"command": "node verify-admin-data.tmp.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check admin data routes",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js; node --check server/prisma/import-development-csv.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "final admin data build",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "restart updated portal",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "stop portal before teacher reseed",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and $_.CommandLine -match 'server/index|npm-cli.*server|concurrently' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "reseed 25 teacher dataset",
+			"type": "shell",
+			"command": "npm run clear:development; npm run import:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify seeded record counts",
+			"type": "shell",
+			"command": "node --input-type=module -e \"import { PrismaClient } from '@prisma/client'; const p=new PrismaClient(); const a=await p.student.count(); const b=await p.teacher.count(); console.log(JSON.stringify({students:a,teachers:b})); await p.$disconnect();\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build portal",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify seeded counts",
+			"type": "shell",
+			"command": "node --input-type=module -e \"import { PrismaClient } from '@prisma/client'; const p=new PrismaClient(); console.log(JSON.stringify({students:await p.student.count(), teachers:await p.teacher.count()})); await p['$disconnect']();\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify seeded counts",
+			"type": "shell",
+			"command": "node verify-counts.mjs",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check development import completion now",
+			"type": "shell",
+			"command": "npm run import:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "count students teachers final",
+			"type": "shell",
+			"command": "node verify-counts.mjs",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "syntax check admin route",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "start school portal",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "validate admin route",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "validate attendance route",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build portal attendance",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "validate student route",
+			"type": "shell",
+			"command": "node --check server/src/routes/studentRoutes.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "validate importer",
+			"type": "shell",
+			"command": "node --check server/prisma/import-development-csv.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build final portal",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "reseed class teacher assignments",
+			"type": "shell",
+			"command": "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'node.exe' -and $_.CommandLine -match 'server/index.js|node --watch server/index.js' } | ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }; npm run clear:development; npm run import:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "verify reseed completion",
+			"type": "shell",
+			"command": "npm run import:development",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "restart school portal",
+			"type": "shell",
+			"command": "npm run dev",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "build final frontend",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "check admin route final",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "inspect class teachers",
+			"type": "shell",
+			"command": "node check-assignments.mjs",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "build final admin pages",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "validate admin and student routes",
+			"type": "shell",
+			"command": "node --check server/src/routes/adminRoutes.js; node --check server/src/routes/studentRoutes.js",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start backend server",
+			"type": "shell",
+			"command": "npm run server",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start frontend dev server",
+			"type": "shell",
+			"command": "npm run client",
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build app",
+			"type": "shell",
+			"command": "npm run build",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Start School Website",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build action alignment update",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Build class-wise fees page",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"build"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Check fees API syntax",
+			"type": "shell",
+			"command": "node",
+			"args": [
+				"--check",
+				"server\\src\\routes\\adminRoutes.js"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

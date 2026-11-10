@@ -1,0 +1,407 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Role {
+  id          String      @id @default(cuid())
+  name        String      @unique
+  description String?
+  permissions Permission[]
+  users       User[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Permission {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String?
+  roles       Role[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model User {
+  id           String        @id @default(cuid())
+  username     String        @unique
+  email        String?       @unique
+  passwordHash String
+  roleId       String
+  role         Role          @relation(fields: [roleId], references: [id])
+  isActive     Boolean       @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  student      Student?
+  teacher      Teacher?
+  admin        Admin?
+  activityLogs ActivityLog[]
+  uploadedFiles FileDocument[]
+  galleryImages GalleryImage[]
+}
+
+model Student {
+  id            String                 @id @default(cuid())
+  name          String
+  studentId     String                 @unique
+  roomNumber    String?
+  academicYear  String?
+  gender        String?
+  subjects      String?
+  email         String?
+  importBatchId String?
+  importBatch   ImportBatch?            @relation(fields: [importBatchId], references: [id])
+  classId       String?
+  class         SchoolClass?           @relation(fields: [classId], references: [id])
+  section       String?
+  rollNumber    String?
+  dob           DateTime?
+  parentName    String?
+  parentContact String?
+  address       String?
+  profilePhoto  String?
+  userId        String                 @unique
+  user          User                   @relation(fields: [userId], references: [id])
+  attendance    Attendance[]
+  submissions   AssignmentSubmission[]
+  results       Result[]
+  fees          Fee[]
+  notifications Notification[]
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+
+  @@unique([classId, rollNumber])
+}
+
+model Teacher {
+  id            String                 @id @default(cuid())
+  name          String
+  employeeId    String                 @unique
+  importBatchId String?
+  importBatch   ImportBatch?            @relation(fields: [importBatchId], references: [id])
+  userId        String                 @unique
+  user          User                   @relation(fields: [userId], references: [id])
+  subjects      Subject[]
+  classes       SchoolClass[]
+  assignments   Assignment[]
+  exams         Exam[]
+  notifications Notification[]
+  createdAt     DateTime               @default(now())
+  updatedAt     DateTime               @updatedAt
+}
+
+model Admin {
+  id         String   @id @default(cuid())
+  name       String
+  adminLevel String
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id])
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model AdmissionEnquiry {
+  id               String   @id @default(cuid())
+  enquiryNumber    String   @unique
+  studentName      String
+  dateOfBirth      DateTime?
+  gender           String?
+  classApplyingFor String
+  parentName       String
+  phone            String
+  email            String?
+  address          String
+  previousSchool   String?
+  message          String?
+  status           String   @default("NEW")
+  notes            String?
+  notifications    Notification[]
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model SchoolClass {
+  id          String       @id @default(cuid())
+  name        String
+  section     String
+  teacherId   String?
+  teacher     Teacher?     @relation(fields: [teacherId], references: [id])
+  students    Student[]
+  subjects    Subject[]
+  assignments Assignment[]
+  exams       Exam[]
+  attendance  Attendance[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([name, section])
+}
+
+model Subject {
+  id          String       @id @default(cuid())
+  name        String
+  code        String?
+  teacherId   String?
+  teacher     Teacher?     @relation(fields: [teacherId], references: [id])
+  classId     String?
+  class       SchoolClass? @relation(fields: [classId], references: [id])
+  assignments Assignment[]
+  exams       Exam[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([classId, name])
+}
+
+model Attendance {
+  id        String            @id @default(cuid())
+  studentId String
+  student   Student           @relation(fields: [studentId], references: [id])
+  classId   String
+  class     SchoolClass       @relation(fields: [classId], references: [id])
+  date      DateTime
+  session   String            @default("FULL_DAY")
+  status    String
+  remarks   String?
+  importBatchId String?
+  importBatch ImportBatch?    @relation(fields: [importBatchId], references: [id])
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@index([studentId, date, session])
+  @@unique([studentId, date, session])
+}
+
+model Assignment {
+  id          String                 @id @default(cuid())
+  title       String
+  description String?
+  classId     String?
+  class       SchoolClass?           @relation(fields: [classId], references: [id])
+  subjectId   String?
+  subject     Subject?               @relation(fields: [subjectId], references: [id])
+  teacherId   String?
+  teacher     Teacher?               @relation(fields: [teacherId], references: [id])
+  dueDate     DateTime
+  publishedAt DateTime               @default(now())
+  attachments String?
+  importBatchId String?
+  importBatch   ImportBatch?          @relation(fields: [importBatchId], references: [id])
+  submissions AssignmentSubmission[]
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
+}
+
+model AssignmentSubmission {
+  id           String     @id @default(cuid())
+  assignmentId String
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  studentId    String
+  student      Student    @relation(fields: [studentId], references: [id])
+  fileUrl      String?
+  submittedAt  DateTime?
+  status       String     @default("PENDING")
+  marks        Int?
+  feedback     String?
+  importBatchId String?
+  importBatch  ImportBatch? @relation(fields: [importBatchId], references: [id])
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  @@unique([assignmentId, studentId])
+}
+
+model Exam {
+  id        String      @id @default(cuid())
+  name      String
+  classId   String?
+  class     SchoolClass? @relation(fields: [classId], references: [id])
+  subjectId String?
+  subject   Subject?    @relation(fields: [subjectId], references: [id])
+  teacherId String?
+  teacher   Teacher?    @relation(fields: [teacherId], references: [id])
+  examDate  DateTime
+  maxMarks  Int
+  importBatchId String?
+  importBatch ImportBatch? @relation(fields: [importBatchId], references: [id])
+  results   Result[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model Result {
+  id        String   @id @default(cuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id])
+  examId    String
+  exam      Exam     @relation(fields: [examId], references: [id])
+  marks     Int
+  grade     String
+  percentage Float
+  status    String   @default("PASS")
+  rank      Int?
+  importBatchId String?
+  importBatch ImportBatch? @relation(fields: [importBatchId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Fee {
+  id         String   @id @default(cuid())
+  studentId  String
+  student    Student  @relation(fields: [studentId], references: [id])
+  title      String
+  category   String   @default("OTHER")
+  amount     Float
+  paidAmount Float    @default(0)
+  balance    Float    @default(0)
+  dueDate    DateTime
+  status     String   @default("PENDING")
+  importBatchId String?
+  importBatch ImportBatch? @relation(fields: [importBatchId], references: [id])
+  payments   FeePayment[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model FeePayment {
+  id          String   @id @default(cuid())
+  feeId       String
+  fee         Fee      @relation(fields: [feeId], references: [id])
+  amount      Float
+  paidAt      DateTime @default(now())
+  reference   String?
+    importBatchId String?
+    importBatch   ImportBatch? @relation(fields: [importBatchId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model Notification {
+  id            String          @id @default(cuid())
+  title         String
+  message       String
+  type          String          @default("GENERAL")
+  isRead        Boolean         @default(false)
+  recipientId   String?
+  recipientRole String?
+  studentId     String?
+  student       Student?        @relation(fields: [studentId], references: [id])
+  teacherId     String?
+  teacher       Teacher?        @relation(fields: [teacherId], references: [id])
+  admissionEnquiryId String?
+  admissionEnquiry AdmissionEnquiry? @relation(fields: [admissionEnquiryId], references: [id])
+  importBatchId String?
+  importBatch   ImportBatch? @relation(fields: [importBatchId], references: [id])
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model ImportBatch {
+  id            String                 @id @default(cuid())
+  batchKey      String                 @unique
+  sourceType    String
+  isDemo        Boolean                @default(false)
+  createdAt     DateTime               @default(now())
+  students      Student[]
+  teachers      Teacher[]
+  attendance    Attendance[]
+  assignments   Assignment[]
+  submissions   AssignmentSubmission[]
+  exams         Exam[]
+  results       Result[]
+  fees          Fee[]
+  feePayments   FeePayment[]
+  notifications Notification[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  eventDate   DateTime
+  location    String?
+  imageUrl    String?
+  galleryImages GalleryImage[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model WebsiteContent {
+  id        String   @id @default(cuid())
+  section   String   @unique
+  title     String
+  content   String
+  imageUrl  String?
+  isVisible Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model GalleryAlbum {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  slug        String         @unique
+  description String?
+  images      GalleryImage[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model GalleryCategory {
+  id          String         @id @default(cuid())
+  name        String         @unique
+  slug        String         @unique
+  description String?
+  images      GalleryImage[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model GalleryImage {
+  id           String           @id @default(cuid())
+  title        String
+  description  String?
+  imageUrl     String
+  albumId      String?
+  album        GalleryAlbum?    @relation(fields: [albumId], references: [id])
+  categoryId   String?
+  category     GalleryCategory? @relation(fields: [categoryId], references: [id])
+  eventId      String?
+  event        Event?           @relation(fields: [eventId], references: [id])
+  displayOrder Int              @default(0)
+  published    Boolean          @default(false)
+  createdById  String
+  createdBy    User             @relation(fields: [createdById], references: [id])
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+model FileDocument {
+  id           String   @id @default(cuid())
+  fileName     String
+  originalName String
+  path         String
+  mimeType     String
+  size         Int
+  ownerType    String?
+  ownerId      String?
+  uploadedById String?
+  uploadedBy   User?    @relation(fields: [uploadedById], references: [id])
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  action    String
+  module    String
+  details   String?
+  entityId  String?
+  createdAt DateTime @default(now())
+}

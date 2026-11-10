@@ -1,0 +1,17 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Apply Prisma database schema",
+			"type": "shell",
+			"command": "npx",
+			"args": [
+				"prisma",
+				"db",
+				"push"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

@@ -1,0 +1,26 @@
+Teacher ID,Teacher Name,Username,Initial Password,Subjects,Assigned Classes,Assigned Section,Is Class Teacher,Active
+DUMMY-TCH-001,Teacher 1,dummyteacher01,DummyTeach#01,English,Nursery,A,true,true
+DUMMY-TCH-002,Teacher 2,dummyteacher02,DummyTeach#02,Mathematics,LKG,A,true,true
+DUMMY-TCH-003,Teacher 3,dummyteacher03,DummyTeach#03,Science,UKG,A,true,true
+DUMMY-TCH-004,Teacher 4,dummyteacher04,DummyTeach#04,Social Studies,Class 1,A,true,true
+DUMMY-TCH-005,Teacher 5,dummyteacher05,DummyTeach#05,Hindi,Class 2,A,true,true
+DUMMY-TCH-006,Teacher 6,dummyteacher06,DummyTeach#06,Telugu,Class 3,A,true,true
+DUMMY-TCH-007,Teacher 7,dummyteacher07,DummyTeach#07,Computer Science,Class 4,A,true,true
+DUMMY-TCH-008,Teacher 8,dummyteacher08,DummyTeach#08,English,Class 5,A,true,true
+DUMMY-TCH-009,Teacher 9,dummyteacher09,DummyTeach#09,Mathematics,Class 6,A,true,true
+DUMMY-TCH-010,Teacher 10,dummyteacher10,DummyTeach#10,Science,Class 7,A,true,true
+DUMMY-TCH-011,Teacher 11,dummyteacher11,DummyTeach#11,Social Studies,Class 8,A,true,true
+DUMMY-TCH-012,Teacher 12,dummyteacher12,DummyTeach#12,Hindi,Class 9,A,true,true
+DUMMY-TCH-013,Teacher 13,dummyteacher13,DummyTeach#13,Telugu,Class 10,A,true,true
+DUMMY-TCH-014,Teacher 14,dummyteacher14,DummyTeach#14,English,Nursery,A,false,true
+DUMMY-TCH-015,Teacher 15,dummyteacher15,DummyTeach#15,Mathematics,LKG,A,false,true
+DUMMY-TCH-016,Teacher 16,dummyteacher16,DummyTeach#16,Science,UKG,A,false,true
+DUMMY-TCH-017,Teacher 17,dummyteacher17,DummyTeach#17,Social Studies,Class 1,A,false,true
+DUMMY-TCH-018,Teacher 18,dummyteacher18,DummyTeach#18,Hindi,Class 2,A,false,true
+DUMMY-TCH-019,Teacher 19,dummyteacher19,DummyTeach#19,Telugu,Class 3,A,false,true
+DUMMY-TCH-020,Teacher 20,dummyteacher20,DummyTeach#20,Physical Education,Class 4,A,false,true
+DUMMY-TCH-021,Teacher 21,dummyteacher21,DummyTeach#21,Art and Activity,Class 5,A,false,true
+DUMMY-TCH-022,Teacher 22,dummyteacher22,DummyTeach#22,Environmental Studies,Class 6,A,false,true
+DUMMY-TCH-023,Teacher 23,dummyteacher23,DummyTeach#23,English,Class 7,A,false,true
+DUMMY-TCH-024,Teacher 24,dummyteacher24,DummyTeach#24,Mathematics,Class 8,A,false,true
+DUMMY-TCH-025,Teacher 25,dummyteacher25,DummyTeach#25,Science,Class 9,A,false,true
